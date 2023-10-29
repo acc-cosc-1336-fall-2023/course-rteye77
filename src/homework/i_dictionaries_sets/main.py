@@ -1,13 +1,24 @@
 import dictionary
 
 while True:
-    arg = int(input("Choose one: 1-Get p distance matrix | 2-Exit: "))
-    if arg == 2:
-        break
-    lst1 = input("Enter the first list: ").strip('][').split(',')
-    lst2 = input("Enter the second list: ").strip('][').split(',')
-    lst3 = input("Enter the third list: ").strip('][').split(',')
-    lst4 = input("Enter the fourth list: ").strip('][').split(',')
-    matrix = [lst1,lst2,lst3,lst4]
-    results = dictionary.get_p_distance_matrix(matrix)
-    print("Results: ", results)
+    inventory = {}
+    
+    while True:
+        print("1 - Add or Update Item")
+        print("2 - Delete Item")
+        print("3 - Exit")
+        choice = input("Enter your choice: ")
+
+        if choice == "1":
+            widget_name = input("Enter the widget name: ")
+            quantity = int(input("Enter the quantity: "))
+            dictionary.add_inventory(inventory, widget_name, quantity)
+            print(f"{quantity} {widget_name}(s) added/updated in inventory.")
+        elif choice == "2":
+            widget_name = input("Enter the widget name to delete: ")
+            result = dictionary.remove_inventory_widget(inventory, widget_name)
+            print(result)
+        elif choice == "3":
+            break
+        else:
+            print("Invalid choice. Please select a valid option.")
